@@ -1,4 +1,5 @@
 <?php
+
 namespace Custom\Currency;
 
 use Bitrix\Main\Entity;

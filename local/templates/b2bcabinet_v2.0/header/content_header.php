@@ -100,20 +100,19 @@ $arCurrency = ['RUB','BYN','USD'];
                                     'filter' => ["USER_ID" => $USER->GetID()],
                                     'select' => ['CURRENCY']
                                 ])->fetch();
-
                                 if (!empty($currencySelected)) {
-                                    $_SESSION['USER_CURRENCY'] = $currencySelected;
+                                    $_SESSION['USER_CURRENCY'] = $currencySelected['CURRENCY'];
                                 } else {
                                     $_SESSION['USER_CURRENCY'] = 'RUB';
                                 }
 
                                 foreach ($arCurrency as $item) {
-                                    if (!empty($currencySelected)) {
+                                    if (!empty($currencySelected) && $currencySelected['CURRENCY'] == $item) {
                                         ?>
-                                        <option value="<?= $item ?>" selected><?= $item ?></option>
+                                        <option value="<?=$item?>" selected><?=$item?></option>
                                     <? } else {
                                         ?>
-                                        <option value="<?= $item ?>"><?= $item ?></option>
+                                        <option value="<?=$item?>"><?=$item?></option>
                                         <?
                                     }
                                 }

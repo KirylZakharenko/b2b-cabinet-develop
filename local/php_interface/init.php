@@ -37,7 +37,7 @@ function cashbackPayment(Main\Event $event)
         $propertyCollection = $order->getPropertyCollection();
 
         $property = null;
-        if($propertyCollection->getItemByOrderPropertyCode($cashbackCode) === null) {
+        if ($propertyCollection->getItemByOrderPropertyCode($cashbackCode) === null) {
             $property = $propertyCollection->createItem(
                 [
                     'NAME' => "Оплачен баллами",
@@ -49,7 +49,6 @@ function cashbackPayment(Main\Event $event)
             $property = $propertyCollection->getItemByOrderPropertyCode($cashbackCode);
 
         }
-
 
 
         global $USER_FIELD_MANAGER, $USER;
