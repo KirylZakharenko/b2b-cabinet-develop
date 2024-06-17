@@ -1,0 +1,28 @@
+.header-content{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding:16px;
+}
+
+.main-grid-row img {
+    width: auto;
+}
+
+.main-grid.main-grid-simple .main-grid-cell[data-column-id="NAME"] {
+    max-width: 25%;
+    font-weight: bold;
+}
+
+.main-grid.main-grid-simple .main-grid-cell[data-column-id="NAME"] .text-nowrap {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.main-wrap{
+    margin:0 14px 14px 14px;
+}
+
+.main-grid-cell-inner .main-grid-cell-content button{
+    border: none;
+}

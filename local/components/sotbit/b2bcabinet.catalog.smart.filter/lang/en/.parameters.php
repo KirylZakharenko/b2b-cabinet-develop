@@ -1,0 +1,20 @@
+<?php
+$MESS["CP_BCSF_PRICES"] = "Prices";
+$MESS["CP_BCSF_IBLOCK_TYPE"] = "Information block type";
+$MESS["CP_BCSF_IBLOCK_ID"] = "Information block";
+$MESS["CP_BCSF_SECTION_ID"] = "Information block section ID";
+$MESS["CP_BCSF_SECTION_CODE"] = "Section code";
+$MESS["CP_BCSF_PRICE_CODE"] = "Price type";
+$MESS["CP_BCSF_FILTER_NAME"] = "Name of the output array to filter";
+$MESS["CP_BCSF_SAVE_IN_SESSION"] = "Save filter settings in the user session";
+$MESS["CP_BCSF_CACHE_GROUPS"] = "Consider access rights";
+$MESS["CP_BCSF_GROUP_XML_EXPORT"] = "Yandex Islands support (filter export to XML)";
+$MESS["CP_BCSF_XML_EXPORT"] = "Enable support for Yandex Islands";
+$MESS["CP_BCSF_SECTION_TITLE"] = "Heading";
+$MESS["CP_BCSF_SECTION_DESCRIPTION"] = "Description";
+$MESS["CP_BCSF_HIDE_NOT_AVAILABLE"] = "Do not display products that are out of stock";
+$MESS["CP_BCSF_CONVERT_CURRENCY"] = "Show prices in one currency";
+$MESS["CP_BCSF_CURRENCY_ID"] = "Currency into which prices will be converted";
+$MESS["CP_BCSF_SMART_FILTER_PATH"] = "Smart filter CNC unit";
+$MESS["CP_BCSF_SECTION_CODE_PATH"] = "Path from partition character codes";
+$MESS["CP_BCSF_PAGER_PARAMS_NAME"] = "Name of an array with variables for building links in pagination navigation";

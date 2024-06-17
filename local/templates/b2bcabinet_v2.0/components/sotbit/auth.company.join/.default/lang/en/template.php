@@ -1,0 +1,10 @@
+<?php
+$MESS["SOTBIT_COMPANY_JOIN_FORM_TITLE"] = "Join an organization";
+$MESS["SOTBIT_COMPANY_JOIN_FORM_TITLE_NO_COMPANIES"] = "You are joined to all companies";
+$MESS["SOTBIT_COMPANY_JOIN_FORM_TITLE_SUCCESS_TITLE"] = "Your request has been sent successfully!";
+$MESS["SOTBIT_COMPANY_JOIN_FORM_TITLE_SUCCESS_TEXT"] = "Wait for confirmation.";
+$MESS["SOTBIT_COMPANY_JOIN_FORM_BTN_SUCCESS"] = "OK";
+$MESS["SOTBIT_COMPANY_JOIN_FORM_INPUT_PLACEHOLDER"] = "Enter the name or TIN of the organization";
+$MESS["SOTBIT_COMPANY_JOIN_FORM_BTN_RESET"] = "Cancel";
+$MESS["SOTBIT_COMPANY_JOIN_FORM_BTN_SUBMIT"] = "Join";
+$MESS["SOTBIT_COMPANY_JOINL_ADD_JOIN_PROFILE"] = "Join an organization";

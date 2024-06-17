@@ -1,0 +1,14 @@
+#multilang-choose .multilang-choose__current-lang,
+#multilang-choose .dropdown-item {
+    gap: 6px;
+}
+
+#multilang-choose .icon {
+    width: 28px;
+}
+
+#multilang-choose .icon img {
+    display: flex;
+    width: 100%;
+    height: auto;
+}

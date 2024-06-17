@@ -1,0 +1,20 @@
+<?php
+$MESS["CATALOG_ADD_TO_BASKET"] = "Add to cart";
+$MESS["CATALOG_MORE_PHOTO"] = "More photos";
+$MESS["CATALOG_DOWNLOAD"] = "Download";
+$MESS["CATALOG_BACK"] = "Back to section";
+$MESS["CATALOG_BUY"] = "Buy";
+$MESS["CATALOG_NOT_AVAILABLE"] = "(not in stock)";
+$MESS["CATALOG_QUANTITY"] = "Quantity";
+$MESS["CATALOG_QUANTITY_FROM_TO"] = "From #FROM# to #TO#";
+$MESS["CATALOG_QUANTITY_FROM"] = "From #FROM#";
+$MESS["CATALOG_QUANTITY_TO"] = "Until #TO#";
+$MESS["CATALOG_PRICE_VAT"] = "VAT included";
+$MESS["CATALOG_PRICE_NOVAT"] = "without VAT";
+$MESS["CATALOG_VAT"] = "VAT";
+$MESS["CATALOG_NO_VAT"] = "is not a subject to a tax";
+$MESS["CATALOG_VAT_INCLUDED"] = "VAT included in price";
+$MESS["CATALOG_VAT_NOT_INCLUDED"] = "VAT is not included in the price";
+$MESS["CT_BCE_QUANTITY"] = "Quantity";
+$MESS["CT_BCE_CATALOG_ADD"] = "Add to cart";
+$MESS["CT_BCE_CATALOG_COMPARE"] = "Compare";

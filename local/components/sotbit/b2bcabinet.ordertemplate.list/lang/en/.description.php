@@ -1,0 +1,4 @@
+<?php
+$MESS["SOTBIT_B2BCABINET_ORDERTEMPLATES_LIST_NAME"] = "List of order templates";
+$MESS["SOTBIT_B2BCABINET_ORDERTEMPLATES_LIST_DESCRIPTION"] = "List of company order templates";
+$MESS["SOTBIT_COMPONENTS_TITLE"] = "Sotbit";

@@ -1,0 +1,177 @@
+.support-form {
+	height: calc(90vh + 5rem);
+}
+
+.index_appeals .index_appeal_form {
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+	height: 1px;
+}
+
+.index_appeals .index_appeals-answer {
+	height: 100%;
+}
+
+.index_appeals .index_appeals-answer-form {
+	padding: 1rem 1rem 0;
+	flex-grow: 1;
+	overflow-y: auto;
+}
+
+.index_appeals .index_appeals-answer-day-time {
+	position: sticky;
+	top: -1rem;
+	padding-block: .75rem 1.25rem;
+	text-align: center;
+	color: var(--grey-900);
+	background: var(--white-100);
+	z-index: 5;
+}
+
+.index_appeals .index_appeals-answer-day-time:first-child {
+	margin-top: 0;
+}
+
+.index_appeals .index_appeals-answer-row-messages:not(:last-child) {
+	margin-bottom: 1rem;
+}
+
+.index_appeals .index_appeals-answer-row-messages .card {
+	box-shadow: none;
+}
+
+.index_appeals .index_appeals-answer-row-messages .card:last-child {
+	margin-bottom: 0;
+}
+
+.index_appeals .index_appeals-answer-row-messages .card-header {
+	padding: 1rem;
+	border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+	background: var(--gradient-header);
+	color: var(--white-100);
+}
+
+.index_appeals .index_appeals-answer-row-messages .card-body {
+	padding: 1rem;
+	color: var(--grey-900);
+	border: 1px solid var(--table-border-color);
+	border-radius: 0 0 var(--border-radius-xl) var(--border-radius-xl);
+}
+
+.index_appeals .index_appeals-answer-row-messages p:has(br) {
+	display: none;
+}
+
+.index_appeals .index_appeals-answer-row-messages p:has(span, p) {
+	display: block;
+}
+
+.index_appeals .index_appeals-answer-row-messages p:last-child,
+.index_appeals .index_appeals-answer-row-messages .quote-text p:last-child {
+	margin-bottom: 0;
+}
+
+.index_appeals .index_appeals-answer-row-messages .quote,
+.trumbowyg-editor quote {
+	display: block;
+	padding-left: .75rem;
+	border-left: .25rem solid var(--primary);
+}
+
+.index_appeals .form-group-answe {
+	padding-inline: 1rem;
+}
+
+.index_appeals .form-group-answe[inert] > div,
+.index_appeals .form-group-answe[inert] :is(.trumbowyg .trumbowyg-button-pane, .trumbowyg .trumbowyg-editor, .trumbowyg .trumbowyg-textarea) {
+	background: var(--grey-400);
+}
+
+.form-group-inner {
+	padding: 1rem .5rem;
+}
+
+.trumbowyg {
+	--spacer-2: .25rem;
+	padding: var(--spacer-2);
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius);
+	background: var(--grey-200);
+}
+
+.trumbowyg .trumbowyg-button-pane {
+	padding-inline: var(--spacer-2);
+	background: var(--white-100);
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.trumbowyg .trumbowyg-editor, 
+.trumbowyg .trumbowyg-textarea {
+    min-height: 120px;
+    resize: vertical;
+	border: 1px solid var(--border-color);
+	border-top: none;
+	background-color: var(--white-100);
+	border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.form-marks .form-check {
+	position: relative;
+	transition: color var(--transition-base-timer) ease-in-out;
+}
+
+.form-marks .form-check .ph {
+	color: var(--mark-color);
+}
+
+.form-marks .form-check .icon-active {
+	position: absolute;
+	left: .15px;
+	top: 0;
+	display: inline-block;
+	width: var(--icon-font-size);
+	height: var(--icon-font-size);
+	vertical-align: top;
+	line-height: 1;
+	color: transparent;
+	opacity: 0;
+	transition: opacity .15s ease-in-out;
+}
+
+.form-marks .form-check:hover,
+.form-marks input[type="radio"]:checked + .form-check-label {
+	color: var(--mark-color);
+}
+
+.form-marks .form-check:hover .form-check-label .ph,
+.form-marks input[type="radio"]:checked + .form-check-label .ph {
+	opacity: 0;
+}
+
+.form-marks .form-check:hover .form-check-label .icon-active,
+.form-marks input[type="radio"]:checked + .form-check-label .icon-active {
+	opacity: 1;
+	color: var(--mark-color);
+}
+
+.index_appeals-answer-footer {
+	display: flex;
+	justify-content: end;
+	padding: .5rem 1rem 1rem;
+}
+
+@media (max-width: 991px) {
+	.support-form {
+		height: auto;
+	}
+
+	.index_appeals .index_appeal_form {
+		height: 100vh;
+	}
+
+	.index_appeals .col-lg-7 + .col-lg-5 {
+		margin-top: 1rem;
+	}
+}

@@ -1,0 +1,27 @@
+<?php
+$MESS["IBLOCK_TYPE_TIP"] = "One of the types of information blocks created in the system is selected from the drop-down list. After clicking the <b><i>ok</i></b> button, the information blocks created for the selected type will be loaded.";
+$MESS["IBLOCK_ID_TIP"] = "One of the information blocks of the installed type is selected. If the item is (other) ->, then you must specify the infoblock ID in the field next to it.";
+$MESS["ELEMENT_ID_TIP"] = "The field contains a code that contains the ID of the gallery element.";
+$MESS["JQUERY_TIP"] = "You must enable this option if you do not have the jquery framework connected (it is required for the gallery to work), the library will be downloaded from the google server";
+$MESS["DISPLAY_GALLERY_COLOR_TIP"] = "Specify background color in <a href='http://ru.wikipedia.org/wiki/%D0%A6%D0%B2%D0%B5%D1%82%D0%B0_HTML' target='_blank'>HTML</a> format";
+$MESS["DISPLAY_FOTO_SMALL_BORDER_COLOR_TIP"] = "Specify cut color in <a href='http://ru.wikipedia.org/wiki/%D0%A6%D0%B2%D0%B5%D1%82%D0%B0_HTML' target='_blank'>HTML</a> format";
+$MESS["DISPLAY_FOTO_SMALL_HOVER_COLOR_TIP"] = "Specify animation color in <a href='http://ru.wikipedia.org/wiki/%D0%A6%D0%B2%D0%B5%D1%82%D0%B0_HTML' target='_blank'>HTML</a> format";
+$MESS["ACTION_VARIABLE_TIP"] = "This field indicates the name of the variable in which the action is transmitted: ADD_TO_COMPARE_LIST, ADD2BASKET, etc. The default value of the field <i>is action</i> .";
+$MESS["PRODUCT_ID_VARIABLE_TIP"] = "The name of the variable in which the product ID will be transmitted.";
+$MESS["SECTION_ID_VARIABLE_TIP"] = "The name of the variable in which the information block section ID will be transmitted.";
+$MESS["META_KEYWORDS_TIP"] = "The drop-down list lists all properties defined for this infoblock. Among them, the one containing the keywords is selected.";
+$MESS["META_DESCRIPTION_TIP"] = "The drop-down list lists all properties defined for this infoblock. Among them, the one containing the description is selected.";
+$MESS["DISPLAY_PANEL_TIP"] = "When this option is installed, the buttons will be displayed in the site editing mode on the administrative panel and in the set of buttons in the editing area of this component.";
+$MESS["SET_TITLE_TIP"] = "When this option is checked, the page title will be set to the name of the element.";
+$MESS["ADD_SECTIONS_CHAIN_TIP"] = "If the option is set and sections are created in the information block, then when moving through the sections their names will be added to the navigation chain.";
+$MESS["PRICE_CODE_TIP"] = "It is determined which type of prices will be displayed in the catalogue. If none of the types is selected, then the price and <i>the Buy</i> and <i>Add to Cart</i> buttons will not be shown.";
+$MESS["USE_PRICE_COUNT_TIP"] = "When the option is checked, prices of all types of goods are displayed.";
+$MESS["SHOW_PRICE_COUNT_TIP"] = "You can set the quantity for which the price will be displayed, for example, 1 or 10, depending on the specifics of the product.";
+$MESS["LINK_IBLOCK_TYPE_TIP"] = "If the elements of one of the information blocks are related to the elements of the displayed information block, then the type of the associated information block is indicated here.";
+$MESS["LINK_IBLOCK_ID_TIP"] = "The information block itself is indicated, the elements of which are associated with the displayed information block.";
+$MESS["LINK_PROPERTY_SID_TIP"] = "The property by which the elements are linked is selected from the list or indicated as a code in the field next to it.";
+$MESS["LINK_ELEMENTS_URL_TIP"] = "Specifies the path to the page where a list of related elements will be shown.";
+$MESS["CACHE_TYPE_TIP"] = "<i>Auto</i> : valid when caching is enabled for a specified time;<br /> <i>Cache</i> : For caching, only the cache time needs to be determined;<br /> <i>Do not cache</i> : There is no caching in any case.";
+$MESS["CACHE_TIME_TIP"] = "The field is used to indicate the caching time in seconds.";
+$MESS["PRICE_VAT_INCLUDE_TIP"] = "If this option is checked, prices will be shown including VAT.";
+$MESS["PRICE_VAT_SHOW_VALUE_TIP"] = "The option is used to display the VAT amount.";

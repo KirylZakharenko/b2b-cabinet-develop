@@ -1,0 +1,28 @@
+<?php
+$MESS["SOA_SALE_RECORDS_LIST"] = "To the list of organizations";
+$MESS["SOA_SALE_SAVE"] = "Save";
+$MESS["SOA_SALE_APPLY"] = "Apply";
+$MESS["SOA_SALE_RESET"] = "Cancel";
+$MESS["SOA_MULTIPLE_BTN"] = "Add";
+$MESS["SOA_MULTIPLE_EDIT_BTN"] = "Change";
+$MESS["SOA_MULTIPLE_DELETE_BTN"] = "Delete";
+$MESS["SOA_SALE_PERS_TYPE"] = "Payer type";
+$MESS["SOA_SALE_PNAME"] = "Name";
+$MESS["SOA_SALE_PROFILE_NO"] = "Organization No. #ID#";
+$MESS["SOA_SALE_DOWNLOAD_FILE"] = "Download file #FILE_NAME#";
+$MESS["SOA_SALE_DELETE_FILE"] = "Delete a file";
+$MESS["SOA_SALE_SELECT"] = "Choose";
+$MESS["SOA_SALE_FILE_NOT_SELECTED"] = "File not selected";
+$MESS["SOA_SALE_FILE_COUNT"] = "Selected files: ";
+$MESS["SOA_FIELD_TYPE_ENUM"] = "Select value";
+$MESS["SOA_CONFIRM_BUYER"] = "The organization is awaiting confirmation";
+$MESS["SOA_PROFILE_ADD"] = "New organization";
+$MESS["SOA_PROFILE_EDIT"] = "Editing an organization";
+$MESS["SOA_COMPANY_CONFIRM"] = "The organization has been sent for moderation. Wait for confirmation. Return to <a href='#COMPANY_LIST#'>list</a> .";
+$MESS["SOA_COMPANY_ADD"] = "Organization added. Return to <a href='#COMPANY_LIST#'>list</a> .";
+$MESS["SOA_COMPANY_NAME"] = "Name";
+$MESS["SOA_COMPANY_CONSENT_TO_SEND_FOR_MODERATION"] = "After the changes, the company will go for moderation. Continue?";
+$MESS["SOA_COMPANY_USER_FIELDS_GROUP"] = "Custom fields";
+$MESS["SPPD_DOWNLOAD_FILE"] = "Download file #FILE_NAME#";
+$MESS["PERSONAL_GROUPS_LIST_TITLE"] = "Selecting a payer group";
+$MESS["SOA_MULTI_ADDRESS_TITLE"] = "Delivery address";

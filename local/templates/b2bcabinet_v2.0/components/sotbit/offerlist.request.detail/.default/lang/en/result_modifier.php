@@ -1,0 +1,9 @@
+<?php
+$MESS["SO_REQUEST_HEADER_NAME"] = "Name";
+$MESS["SO_REQUEST_HEADER_ARTICLE"] = "vendor code";
+$MESS["SO_REQUEST_HEADER_PRICE"] = "Price";
+$MESS["SO_REQUEST_HEADER_QNT"] = "Quantity";
+$MESS["SO_REQUEST_HEADER_TOTAL"] = "Total";
+$MESS["SO_REQUEST_LIST_ACTION_DETAIL"] = "View";
+$MESS["SO_REQUEST_LIST_ACTION_DELETE"] = "Delete";
+$MESS["SO_REQUEST_LIST_ACTION_CONFIRM_DELETE"] = "Are you sure you want to delete the CP request?";

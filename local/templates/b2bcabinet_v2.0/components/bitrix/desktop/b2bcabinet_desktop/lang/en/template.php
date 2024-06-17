@@ -1,0 +1,20 @@
+<?php
+$MESS["CMDESKTOP_TDEF_ERR1"] = "Error saving gadget position on the server.";
+$MESS["CMDESKTOP_TDEF_ERR2"] = "Error adding gadget to server.";
+$MESS["CMDESKTOP_TDEF_CONF"] = "Your desktop settings will be applied by default to all new or unauthorized users. Continue?";
+$MESS["CMDESKTOP_TDEF_CONF_USER"] = "Your desktop settings will be applied by default to all new and previously unconfigured user profiles. Continue?";
+$MESS["CMDESKTOP_TDEF_CONF_GROUP"] = "Your desktop settings will be applied by default to all new and unconfigured workgroups. Continue?";
+$MESS["CMDESKTOP_TDEF_CLEAR_CONF"] = "The default settings for your desktop will be applied.";
+$MESS["CMDESKTOP_TDEF_TITLE_CLEAR_CONF"] = "Are you sure?";
+$MESS["CMDESKTOP_TDEF_ADD"] = "Add";
+$MESS["CMDESKTOP_TDEF_ADD_WIDGET"] = "Add widget";
+$MESS["CMDESKTOP_TDEF_SET"] = "Save as default settings";
+$MESS["CMDESKTOP_TDEF_CLEAR"] = "Reset current settings";
+$MESS["CMDESKTOP_TDEF_CANCEL"] = "Cancel";
+$MESS["CMDESKTOP_TDEF_CONFIRM"] = "OK";
+$MESS["CMDESKTOP_TDEF_DELETE"] = "Delete";
+$MESS["CMDESKTOP_TDEF_HIDE"] = "Hide/Show";
+$MESS["CMDESKTOP_TDEF_SETTINGS"] = "Settings";
+$MESS["CMDESKTOP_TDEF_RESET"] = "Reset";
+$MESS["CMDESKTOP_TDEF_SAVE"] = "Save";
+$MESS["PERSONAL_MANAGER_LABEL"] = "Personal manager";

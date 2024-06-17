@@ -1,0 +1,7 @@
+<?php
+$MESS["SPOL_PSEUDO_CANCELLED_COLOR"] = "Color of canceled orders";
+$MESS["SPOL_STATUS_COLOR"] = "Status color";
+$MESS["SPOL_STATUS_COLOR_GREEN"] = "Green";
+$MESS["SPOL_STATUS_COLOR_GRAY"] = "Grey";
+$MESS["SPOL_STATUS_COLOR_YELLOW"] = "Yellow";
+$MESS["SPOL_STATUS_COLOR_RED"] = "Red";

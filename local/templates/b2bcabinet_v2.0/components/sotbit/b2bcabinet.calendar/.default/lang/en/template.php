@@ -1,0 +1,13 @@
+<?php
+$MESS["CALENDAR_LOADER_TEXT"] = "Loading";
+$MESS["CALENDAR_BTN_PREV"] = "Prev";
+$MESS["CALENDAR_BTN_NEXT"] = "Track";
+$MESS["CALENDAR_BTN_TODAY"] = "Today";
+$MESS["CALENDAR_BTN_MONTH"] = "Month";
+$MESS["CALENDAR_BTN_WEEK"] = "A week";
+$MESS["CALENDAR_BTN_DAY"] = "Day";
+$MESS["CALENDAR_BTN_LIST"] = "Agenda";
+$MESS["CALENDAR_BTN_WEEK_SHORT"] = "Ned";
+$MESS["CALENDAR_BTN_ALL_DAY"] = "All day";
+$MESS["CALENDAR_BTN_MORE_LINK"] = "+ more ";
+$MESS["CALENDAR_BTN_NO_EVENTS"] = "No events to display";

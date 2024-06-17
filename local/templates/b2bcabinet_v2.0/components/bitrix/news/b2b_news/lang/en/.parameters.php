@@ -1,0 +1,26 @@
+<?php
+$MESS["T_IBLOCK_DESC_NEWS_DATE"] = "Display element date";
+$MESS["T_IBLOCK_DESC_NEWS_PICTURE"] = "Display an image for the announcement";
+$MESS["T_IBLOCK_DESC_NEWS_TEXT"] = "Display announcement text";
+$MESS["T_IBLOCK_DESC_NEWS_USE_SHARE"] = "Show social panel bookmarks";
+$MESS["T_IBLOCK_DESC_NEWS_SHARE_HIDE"] = "Do not open the social panel. default bookmarks";
+$MESS["T_IBLOCK_DESC_NEWS_SHARE_TEMPLATE"] = "Social panel component template bookmarks";
+$MESS["T_IBLOCK_DESC_NEWS_SHARE_SYSTEM"] = "Social media used bookmarks and networks";
+$MESS["T_IBLOCK_DESC_NEWS_SHARE_SHORTEN_URL_LOGIN"] = "Login for bit.ly";
+$MESS["T_IBLOCK_DESC_NEWS_SHARE_SHORTEN_URL_KEY"] = "Key for bit.ly";
+$MESS["SEARCH_PAGE_ELEMENTS"] = "Number of tags";
+$MESS["SEARCH_FONT_MAX"] = "Maximum font size (px)";
+$MESS["SEARCH_FONT_MIN"] = "Minimum font size (px)";
+$MESS["SEARCH_COLOR_OLD"] = "The color of the earlier tag (example: \"FEFEFE\")";
+$MESS["SEARCH_COLOR_NEW"] = "Later tag color (example: \"C0C0C0\")";
+$MESS["SEARCH_PERIOD_NEW_TAGS"] = "Period during which the tag is considered new (days)";
+$MESS["SEARCH_WIDTH"] = "Tag cloud width (example: \"100%\" or \"100px\", \"100pt\", \"100in\")";
+$MESS["TP_CBIV_DISPLAY_AS_RATING"] = "Show as rating";
+$MESS["TP_CBIV_AVERAGE"] = "Average value";
+$MESS["TP_CBIV_RATING"] = "Rating";
+$MESS["GALERY_SOURCE"] = "Gallery property";
+$MESS["NEWS_LIST_TEMPLATE"] = "News feed template";
+$MESS["NEWS_LIST_TEMPLATE_VERTICAL"] = "Vertical";
+$MESS["NEWS_LIST_TEMPLATE_HORIZONTAL"] = "Horizontal";
+$MESS["NEWS_LIST_TEMPLATE_GRID"] = "Net";
+$MESS["T_IBLOCK_SHOW_TAG_CLOUD"] = "Display tag cloud";

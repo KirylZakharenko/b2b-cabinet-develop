@@ -1,0 +1,27 @@
+<?php
+$MESS["SC_CSQ_GROUP_STORE"] = "Warehouses";
+$MESS["SC_CSQ_PARAMS_ELEMENT_ID"] = "product id";
+$MESS["SC_CSQ_PARAMS_STORE"] = "Warehouses";
+$MESS["SC_CSQ_PARAMS_USE_STORE"] = "Use warehouses";
+$MESS["SC_CSQ_PARAMS_SHOW_MAX_QUANTITY"] = "Show remaining product";
+$MESS["SC_CSQ_SHOW_MAX_QUANTITY_M"] = "with the remainder replaced by text";
+$MESS["SC_CSQ_SHOW_MAX_QUANTITY_Y"] = "with display of real balance";
+$MESS["SC_CSQ_PARAMS_MESS_SHOW_MAX_QUANTITY"] = "Text for the rest";
+$MESS["SC_CSQ_SHOW_MAX_QUANTITY_DEFAULT"] = "Availability";
+$MESS["SC_CSQ_PARAMS_RELATIVE_QUANTITY_FACTOR"] = "The value from which the substitution occurs";
+$MESS["SC_CSQ_PARAMS_RELATIVE_QUANTITY_MANY"] = "Text for value greater";
+$MESS["SC_CSQ_MESS_RELATIVE_QUANTITY_MANY_DEFAULT"] = "a lot of";
+$MESS["SC_CSQ_PARAMS_MESS_RELATIVE_QUANTITY_FEW"] = "Text for value less than";
+$MESS["SC_CSQ_MESS_RELATIVE_QUANTITY_FEW_DEFAULT"] = "few";
+$MESS["SC_CSQ_PARAMS_MESS_NOT_AVAILABLE_DEFAULT"] = "Not available";
+$MESS["SC_CSQ_PARAMS_MESS_NOT_AVAILABLE"] = "Product out of stock message";
+$MESS["SC_CSQ_PARAM_STORE_PROPERTIES"] = "Properties";
+$MESS["SC_CSQ_PARAM_STORE_FIELDS"] = "Fields";
+$MESS["SC_CSQ_STORE_TITLE"] = "Name";
+$MESS["SC_CSQ_STORE_ADDRESS"] = "Address";
+$MESS["SC_CSQ_STORE_DESCRIPTION"] = "Description";
+$MESS["SC_CSQ_STORE_IMAGE_ID"] = "Image";
+$MESS["SC_CSQ_STORE_COORDINATES"] = "Coordinates";
+$MESS["SC_CSQ_STORE_EMAIL"] = "Email";
+$MESS["SC_CSQ_STORE_PHONE"] = "Telephone";
+$MESS["SC_CSQ_STORE_SCHEDULE"] = "Schedule";
