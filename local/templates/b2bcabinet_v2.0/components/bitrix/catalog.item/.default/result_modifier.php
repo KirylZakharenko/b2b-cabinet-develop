@@ -1,6 +1,7 @@
 <? if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die();
 
 use Bitrix\Catalog\ProductTable;
+$userCurrency = $_SESSION['USER_CURRENCY'];
 
 $arResult['COUNT_TABLE_HEADER'] = 1;
 foreach ($arResult['TABLE_HEADER'] as $item) {
@@ -57,21 +58,24 @@ if (
     foreach ($matrix ?: [] as $key => $value) {
         $printPrices[$cols[$key]['NAME']] = $value;
         foreach ($value as $range => $priceDetails) {
+
+            $convertDiscount = CCurrencyRates::ConvertCurrency($priceDetails['DISCOUNT_PRICE'], $priceDetails['CURRENCY'], $userCurrency);
+
             $printPrices[$cols[$key]['NAME']][$range]['PRINT'] = CCurrencyLang::CurrencyFormat(
-                $arResult['ITEM']["CATALOG_MEASURE_RATIO"] ? $priceDetails['DISCOUNT_PRICE'] * $arResult['ITEM']["CATALOG_MEASURE_RATIO"] : $priceDetails['DISCOUNT_PRICE'],
-                $priceDetails['CURRENCY']
+                $arResult['ITEM']["CATALOG_MEASURE_RATIO"] ? $convertDiscount * $arResult['ITEM']["CATALOG_MEASURE_RATIO"] : $convertDiscount,
+                $userCurrency
             );
 
             if (round($priceDetails['PRICE'], 2) === round($item['DISPLAY_PROPERTIES']['MINIMUM_PRICE']['VALUE'], 2)) {
                 $item['DISPLAY_PROPERTIES']['MINIMUM_PRICE']['DISPLAY_VALUE'] = CCurrencyLang::CurrencyFormat(
-                    $arResult['ITEM']["CATALOG_MEASURE_RATIO"] ? $priceDetails['DISCOUNT_PRICE'] * $arResult['ITEM']["CATALOG_MEASURE_RATIO"] : $priceDetails['DISCOUNT_PRICE'],
-                    $priceDetails['CURRENCY']
+                    $arResult['ITEM']["CATALOG_MEASURE_RATIO"] ? $convertDiscount * $arResult['ITEM']["CATALOG_MEASURE_RATIO"] : $convertDiscount,
+                    $userCurrency
                 );
             }
             if (round($priceDetails['PRICE'], 2) === round($item['DISPLAY_PROPERTIES']['MAXIMUM_PRICE']['VALUE'], 2)) {
                 $item['DISPLAY_PROPERTIES']['MAXIMUM_PRICE']['DISPLAY_VALUE'] = CCurrencyLang::CurrencyFormat(
-                    $arResult['ITEM']["CATALOG_MEASURE_RATIO"] ? $priceDetails['DISCOUNT_PRICE'] * $arResult['ITEM']["CATALOG_MEASURE_RATIO"] : $priceDetails['DISCOUNT_PRICE'],
-                    $priceDetails['CURRENCY']
+                    $arResult['ITEM']["CATALOG_MEASURE_RATIO"] ? $convertDiscount * $arResult['ITEM']["CATALOG_MEASURE_RATIO"] : $convertDiscount,
+                    $userCurrency
                 );
             }
         }
@@ -79,15 +83,15 @@ if (
 
     // Private price
     if (
-        \Bitrix\Main\Loader::includeModule("sotbit.privateprice") && 
-        \Bitrix\Main\Config\Option::get("sotbit.privateprice", "MODULE_STATUS", 0) && 
+        \Bitrix\Main\Loader::includeModule("sotbit.privateprice") &&
+        \Bitrix\Main\Config\Option::get("sotbit.privateprice", "MODULE_STATUS", 0) &&
         $GLOBALS["USER"]->IsAuthorized()
     ) {
         if (!empty($arParams['ITEMS_PRIVAT_PRICES'][$item['ID']][$arParams['PRIVAT_PRICES_PARAMS']["PRICE_COLUMN"]]) &&
-            \Bitrix\Main\Loader::includeModule("sotbit.privateprice") && 
-            \Bitrix\Main\Config\Option::get("sotbit.privateprice", "MODULE_STATUS", 0) && 
+            \Bitrix\Main\Loader::includeModule("sotbit.privateprice") &&
+            \Bitrix\Main\Config\Option::get("sotbit.privateprice", "MODULE_STATUS", 0) &&
             $GLOBALS["USER"]->IsAuthorized()
-            ) {
+        ) {
             $printPrices['PRIVATE_PRICE'][$item['ITEM_QUANTITY_RANGE_SELECTED']]['PRICE'] = !empty($item['CATALOG_MEASURE_RATIO']) ? $arParams['ITEMS_PRIVAT_PRICES'][$item['ID']][$arParams['PRIVAT_PRICES_PARAMS']["PRICE_COLUMN"]] * $item['CATALOG_MEASURE_RATIO'] : $arParams['ITEMS_PRIVAT_PRICES'][$item['ID']][$arParams['PRIVAT_PRICES_PARAMS']["PRICE_COLUMN"]];
             $printPrices['PRIVATE_PRICE'][$item['ITEM_QUANTITY_RANGE_SELECTED']]['PRINT'] = CCurrencyLang::CurrencyFormat($printPrices['PRIVATE_PRICE'][$item['ITEM_QUANTITY_RANGE_SELECTED']]['PRICE'], $arParams['ITEMS_PRIVAT_PRICES'][$item['ID']][$arParams['PRIVAT_PRICES_PARAMS']['CURRENCY_FORMAT']]);
         } else {
@@ -136,8 +140,12 @@ if (
             $price["CURRENCY"],
             $arDiscounts
         );
-        $price["DISCOUNT_PRICE"] =!empty($offersMesure[$price["PRODUCT_ID"]] ) ?  $discountPrice * $offersMesure[$price["PRODUCT_ID"]] : $discountPrice;
-        $price["PRICE"] = !empty($offersMesure[$price["PRODUCT_ID"]] ) ? $price["PRICE"] * $offersMesure[$price["PRODUCT_ID"]] : $price["PRICE"];
+
+        $convertDiscount = CCurrencyRates::ConvertCurrency($discountPrice, $price["CURRENCY"], $userCurrency);
+        $convertPrice = CCurrencyRates::ConvertCurrency($price["PRICE"], $price["CURRENCY"], $userCurrency);
+
+        $price["DISCOUNT_PRICE"] =!empty($offersMesure[$price["PRODUCT_ID"]] ) ?  $convertDiscount * $offersMesure[$price["PRODUCT_ID"]] : $convertDiscount;
+        $price["PRICE"] = !empty($offersMesure[$price["PRODUCT_ID"]] ) ? $convertPrice * $offersMesure[$price["PRODUCT_ID"]] : $convertPrice;
 
         // $list[prod_id][price_code][price_range]
         if ($priceTypeHelper[$price['CATALOG_GROUP_ID']]) {
@@ -147,24 +155,30 @@ if (
                 "DISCOUNT_PRICE" => ($price["DISCOUNT_PRICE"] ?: $price["PRICE"]),
                 "CURRENCY" => $price["CURRENCY"],
                 "VAT_RATE" => "",
-                "PRINT" => CCurrencyLang::CurrencyFormat(($price["DISCOUNT_PRICE"] ?: $price["PRICE"]), $price["CURRENCY"])
+//                "PRINT" => CCurrencyLang::CurrencyFormat(($price["DISCOUNT_PRICE"] ?: $price["PRICE"]), $price["CURRENCY"])
+                "PRINT" => CCurrencyRates::ConvertCurrency(($price["DISCOUNT_PRICE"] ?: $price["PRICE"]), $price["CURRENCY"], $userCurrency) //!!!
             ];
-            $offerPrice["PRINT_NOT_DISCOUNT_PRICE"] = CCurrencyLang::CurrencyFormat($offerPrice["PRICE"], $offerPrice["CURRENCY"]);
+//            $offerPrice["PRINT_NOT_DISCOUNT_PRICE"] = CCurrencyLang::CurrencyFormat($offerPrice["PRICE"], $offerPrice["CURRENCY"]);
+//            $offerPrice["PRINT_NOT_DISCOUNT_PRICE"] = CCurrencyLang::CurrencyFormat($offerPrice["PRICE"], $offerPrice["CURRENCY"]);
+            $offerPrice["PRINT_NOT_DISCOUNT_PRICE"] = CCurrencyRates::ConvertCurrency($offerPrice["PRICE"], $offerPrice["CURRENCY"], $userCurrency);
+
             $offersPrices[$price['PRODUCT_ID']][$priceTypeHelper[$price['CATALOG_GROUP_ID']]][($price['QUANTITY_FROM'] ?: 'ZERO') . '-' . ($price['QUANTITY_TO'] ?: 'INF')] = $offerPrice;
             if (empty($item['MIN_PRICE'][$priceTypeHelper[$price['CATALOG_GROUP_ID']]]) ) {
                 $item['MIN_PRICE'][$priceTypeHelper[$price['CATALOG_GROUP_ID']]]['PRICE'] = $price["PRICE"];
-                $item['MIN_PRICE'][$priceTypeHelper[$price['CATALOG_GROUP_ID']]]['PRINT'] = CCurrencyLang::CurrencyFormat($price["PRICE"], $price['CURRENCY']);
+//                $item['MIN_PRICE'][$priceTypeHelper[$price['CATALOG_GROUP_ID']]]['PRINT'] = CCurrencyLang::CurrencyFormat($price["PRICE"], $price['CURRENCY']);
+                $item['MIN_PRICE'][$priceTypeHelper[$price['CATALOG_GROUP_ID']]]['PRINT'] = CCurrencyLang::CurrencyFormat($price["PRICE"], $userCurrency);
             } elseif ($item['MIN_PRICE'][$priceTypeHelper[$price['CATALOG_GROUP_ID']]] > $price["PRICE"] && $price["PRICE"] > 0) {
                 $item['MIN_PRICE'][$priceTypeHelper[$price['CATALOG_GROUP_ID']]]['PRICE'] = $price["PRICE"];
-                $item['MIN_PRICE'][$priceTypeHelper[$price['CATALOG_GROUP_ID']]]['PRINT'] = CCurrencyLang::CurrencyFormat($price["PRICE"], $price['CURRENCY']);
+//                $item['MIN_PRICE'][$priceTypeHelper[$price['CATALOG_GROUP_ID']]]['PRINT'] = CCurrencyLang::CurrencyFormat($price["PRICE"], $price['CURRENCY']);
+                $item['MIN_PRICE'][$priceTypeHelper[$price['CATALOG_GROUP_ID']]]['PRINT'] = CCurrencyLang::CurrencyFormat($price["PRICE"], $userCurrency);
             }
-                $minPirce = &$item['MIN_PRICE'][$priceTypeHelper[$price['CATALOG_GROUP_ID']]];
-                $minPirce['PRICE'] = empty($minPirce)
-                    ? "INF"
-                    : ($minPirce > CCurrencyRates::ConvertCurrency(floatval($price["DISCOUNT_PRICE"]), $price["CURRENCY"], $baseCurrency)
-                        ? $price["DISCOUNT_PRICE"]
-                        : $minPirce);
-                $minPirce['PRINT'] = CCurrencyLang::CurrencyFormat($minPirce['PRICE'], $baseCurrency);
+            $minPirce = &$item['MIN_PRICE'][$priceTypeHelper[$price['CATALOG_GROUP_ID']]];
+            $minPirce['PRICE'] = empty($minPirce)
+                ? "INF"
+                : ($minPirce > CCurrencyRates::ConvertCurrency(floatval($price["DISCOUNT_PRICE"]), $userCurrency, $baseCurrency)
+                    ? $price["DISCOUNT_PRICE"]
+                    : $minPirce);
+            $minPirce['PRINT'] = CCurrencyLang::CurrencyFormat($minPirce['PRICE'], $baseCurrency);
         }
     }
     foreach ($item['OFFERS'] as $key => &$offer) {
@@ -223,9 +237,9 @@ if (
         }
 
         if (
-            empty($item['MIN_PRICE']['PRIVATE_PRICE']) || 
+            empty($item['MIN_PRICE']['PRIVATE_PRICE']) ||
             $item['MIN_PRICE']['PRIVATE_PRICE']['PRICE'] > $offersPrices[$offer['ID']]['PRIVATE_PRICE'][$offer['ITEM_QUANTITY_RANGE_SELECTED']]['PRICE']
-            ) {
+        ) {
             $item['MIN_PRICE']['PRIVATE_PRICE'] = $offersPrices[$offer['ID']]['PRIVATE_PRICE'][$offer['ITEM_QUANTITY_RANGE_SELECTED']];
         }
 
