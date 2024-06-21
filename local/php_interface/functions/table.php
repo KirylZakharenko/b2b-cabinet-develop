@@ -3,6 +3,7 @@
 use Bitrix\Main;
 use Bitrix\Main\Application;
 use Bitrix\Main\Entity\Base;
+use Bitrix\Sale;
 
 use Custom\Currency\CurrencyTable;
 
@@ -40,4 +41,16 @@ function writeTable($userID, $currency)
     }
 
     return $status;
+}
+
+/**
+ * @throws Main\ArgumentTypeException
+ * @throws Main\ArgumentException
+ * @throws Main\NotImplementedException
+ */
+function changeCurrencyBasketItems($userID, $currency)
+{
+    $basket = Sale\Basket::loadItemsForFUser(Sale\Fuser::getId(), Bitrix\Main\Context::getCurrent()->getSite());
+
+//    $basketItems =
 }

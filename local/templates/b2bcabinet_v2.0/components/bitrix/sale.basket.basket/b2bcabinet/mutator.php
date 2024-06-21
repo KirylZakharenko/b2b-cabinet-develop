@@ -2,7 +2,7 @@
 
 use Bitrix\Main\Localization\Loc;
 use Bitrix\Sale\PriceMaths;
-
+use Custom\Currency\CurrencyTable;
 /**
  *
  * This file modifies result for every request (including AJAX).
@@ -148,8 +148,30 @@ if ($useReplace) {
 	$replaceValue = \Bitrix\Main\Config\Option::get(\SotbitB2bCabinet::MODULE_ID, 'CATALOG_REPLACE_LINKS_VALUE', '/b2bcabinet/orders/blank_zakaza/', SITE_ID);
 }
 
+
+//echo "<pre>";
+//print_r($this->basketItems);
+//echo "</pre>";
+global $USER;
+
+$userCurrency = CurrencyTable::getList([
+    'filter' => ["USER_ID" => $USER->GetID()],
+    'select' => ['CURRENCY']
+])->fetch();
+
 foreach ($this->basketItems as $row)
 {
+
+    if ($userCurrency) {
+        $row['PRICE_FORMATED'] = CCurrencyLang::CurrencyFormat($row['PRICE'], $userCurrency['CURRENCY'], true);
+        $row['FULL_PRICE_FORMATED'] = CCurrencyLang::CurrencyFormat($row['FULL_PRICE'], $userCurrency['CURRENCY'], true);
+        $row['DISCOUNT_PRICE_PERCENT_FORMATED'] = CCurrencyLang::CurrencyFormat($row['DISCOUNT_PRICE_PERCENT'], $userCurrency['CURRENCY'], true);
+        $row['DISCOUNT_PRICE_FORMATED'] = CCurrencyLang::CurrencyFormat($row['DISCOUNT_PRICE'], $userCurrency['CURRENCY'], true);
+        $row['SUM'] = CCurrencyLang::CurrencyFormat($row['SUM_VALUE'], $userCurrency['CURRENCY'], true);
+        $row['SUM_FULL_PRICE_FORMATED'] = CCurrencyLang::CurrencyFormat($row['SUM_FULL_PRICE'], $userCurrency['CURRENCY'], true);
+        $row['SUM_DISCOUNT_PRICE_FORMATED'] = CCurrencyLang::CurrencyFormat($row['SUM_DISCOUNT_PRICE'], $userCurrency['CURRENCY'], true);
+    }
+
 	$rowData = array(
 		'ID' => $row['ID'],
 		'PRODUCT_ID' => $row['PRODUCT_ID'],
