@@ -1,6 +1,6 @@
 <?php
 
-namespace Develop\Budget\Helper\Internals;
+namespace Budget\Helper\Internals\Budget;
 
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 
@@ -29,6 +29,12 @@ class BudgetTable extends Entity\DataManager
                 'required' => true,
             ]),
             'MONEY' => new Entity\FloatField('MONEY', [
+                'required' => true,
+            ]),
+            'ORDER_ID' => new Entity\IntegerField('ORDER_ID', [
+                'required' => true,
+            ]),
+            'ORDER_STATUS' => new Entity\StringField('ORDER_STATUS', [
                 'required' => true,
             ]),
             'TIME_STAMP' => new Entity\DatetimeField('TIME_STAMP', [

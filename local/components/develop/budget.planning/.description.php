@@ -6,13 +6,11 @@ $arComponentDescription = array(
     "DESCRIPTION" => 'Позволяет вести статистику своих финансов',
     "ICON" => "/images/catalog.gif",
     "COMPLEX" => "Y",
-    "SORT" => 10,
     "PATH" => array(
-        "ID" => "content",
+        "ID" => "b-profile",
         "CHILD" => array(
             "ID" => "budget",
             "NAME" => "Бюджетирование",
-            "SORT" => 30,
         )
     )
 );

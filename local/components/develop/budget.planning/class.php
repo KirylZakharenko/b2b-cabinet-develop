@@ -1,25 +1,22 @@
 <?php
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 
-use Bitrix\Main\Localization\Loc;
-use Bitrix\Sale\Internals\OrderChangeTable,
-    Bitrix\Main\UserTable;
-use Bitrix\Main\Grid\Options as GridOptions;
+use Bitrix\Iblock\Component\Tools;
+use Bitrix\Main\Loader;
 
-class BudgetPlanningDetail extends CBitrixComponent
+/**
+ * Список переменных, которых также нужно получить из $_REQUEST параметров, но их нет в url-маске
+ * К примеру мы указали маску /catalog/#SECTION_CODE#/ и в $arComponentVariables указали "SECTION",
+ * то при парсинге урл /catalog/section-code/?SECTION=123 в $arVariables будет SECTION_CODE и SECTION, несмотря на то, что SECTION в маске нет.
+ * @var array|string[]
+ */
+
+class BudgetPlanning extends CBitrixComponent
 {
-    protected $historyList = [];
-    protected $userNameList = [];
-    private $reverseKeysList = [
-        "USER" => "USER_ID",
-        "NAME" => "TYPE",
-        "INFO" => "DATA"
-    ];
 
-//    public function onIncludeComponentLang()
-//    {
-//        Loc::loadMessages(dirname(__FILE__) . "/class.php");
-//    }
+    protected array $arComponentVariables = [
+        "SECTION",
+    ];
 
     public function onPrepareComponentParams($params)
     {
@@ -28,87 +25,101 @@ class BudgetPlanningDetail extends CBitrixComponent
 
     public function executeComponent()
     {
-//        if ($this->startResultCache()) {
-//            $this->getUserSaleHistory($this->arParams["ORDER_ID"]);
+
+        if ($this->arParams["SEF_MODE"] === "Y") {
+            $componentPage = $this->sefMode();
+        } else {
+            $componentPage = $this->noSefMode();
+        }
+
+        //Отдать 404 статус если не найден шаблон
+        if (!$componentPage) {
+            Tools::process404(
+                $this->arParams["MESSAGE_404"],
+                ($this->arParams["SET_STATUS_404"] === "Y"),
+                ($this->arParams["SET_STATUS_404"] === "Y"),
+                ($this->arParams["SHOW_404"] === "Y"),
+                $this->arParams["FILE_404"]
+            );
+        }
+
+        $this->IncludeComponentTemplate($componentPage);
+    }
+
+
+    protected function sefMode()
+    {
+        //Значение алиасов по умолчанию.
+        $arDefaultVariableAliases404 = [];
+
+        /**
+         * Значение масок для шаблонов по умолчанию. - маски без корневого раздела,
+         * который указывается в $arParams["SEF_FOLDER"]
+         */
+        $arDefaultUrlTemplates404 = [
+            "list" => "#SECTION_CODE#/",
+            "graph" => "#SECTION_CODE#/#ELEMENT_CODE#/",
+        ];
+
+        //В этот массив будут заполнены переменные, которые будут найдены по маске шаблонов url
+        $arVariables = [];
+
+        $engine = new CComponentEngine($this);
+        //Нужно добавлять для парсинга SECTION_CODE_PATH и SMART_FILTER_PATH (жадные шаблоны)
+        $engine->addGreedyPart("#SECTION_CODE_PATH#");
+        $engine->addGreedyPart("#SMART_FILTER_PATH#");
+        $engine->setResolveCallback(["CIBlockFindTools", "resolveComponentEngine"]);
+
+        //Объединение дефолтных параметров масок шаблонов и алиасов. Параметры из настроек заменяют дефолтные.
+        $arUrlTemplates = CComponentEngine::makeComponentUrlTemplates($arDefaultUrlTemplates404, $this->arParams["SEF_URL_TEMPLATES"]);
+        $arVariableAliases = CComponentEngine::makeComponentVariableAliases($arDefaultVariableAliases404, $this->arParams["VARIABLE_ALIASES"]);
+
+        //Поиск шаблона
+        $componentPage = $engine->guessComponentPath(
+            $this->arParams["SEF_FOLDER"],
+            $arUrlTemplates,
+            $arVariables
+        );
+
+        //Проброс значений переменных из алиасов.
+        CComponentEngine::initComponentVariables($componentPage, $this->arComponentVariables, $arVariableAliases, $arVariables);
+        $this->arResult = [
+            "VARIABLES" => $arVariables,
+            "ALIASES" => $arVariableAliases
+        ];
+
+        return $componentPage;
+    }
+
+    protected function noSefMode()
+    {
+        $componentPage = "";
+        $arVariables = [];
+        $arDefaultVariableAliases = [];
+
+        //Объединение дефолтных алиасов. Параметры из настроек заменяют дефолтные.
+        $arVariableAliases = CComponentEngine::makeComponentVariableAliases($arDefaultVariableAliases, $this->arParams["VARIABLE_ALIASES"]);
+        //Получаем значения переменных в $arVariables
+        CComponentEngine::initComponentVariables(false, $this->arComponentVariables, $arVariableAliases, $arVariables);
 //
-//            if (!empty($this->historyList)) {
-//                $this->arResult["HISTORY_LIST"] = $this->historyList;
-//            } else {
-//                $this->arResult["HISTORY_LIST"] = [];
-//            }
-//
-//            $this->setResultCacheKeys(["HISTORY_LIST"]);
-//
-//        } else {
-//            $this->abortResultCache();
+//        //По найденным параметрам $arVariables определяем тип страницы
+//        if ((isset($arVariables["ELEMENT_ID"]) && intval($arVariables["ELEMENT_ID"]) > 0)
+//            || (isset($arVariables["ELEMENT_CODE"]) && $arVariables["ELEMENT_CODE"] <> '')
+//        ) {
+//            $componentPage = "graph";
+//        } elseif ((isset($arVariables["SECTION_ID"]) && intval($arVariables["SECTION_ID"]) > 0)
+//            || (isset($arVariables["SECTION_CODE"]) && $arVariables["SECTION_CODE"] <> '')
+//        ) {
+//            $componentPage = "list";
 //        }
 
-        $this->IncludeComponentTemplate('index');
-
-    }
-
-    public function getUserSaleHistory($orderID): void
-    {
-
-        $filter = [
-            "ORDER_ID" => $orderID,
-            "!ENTITY" => ["PROPERTY", "TAX"],
-            "!ENTITY_ID" => "",
-        ];
-        $select = [
-            "DATE_MODIFY", "TYPE", "DATA", "USER_ID", "ID"
+        $this->arResult = [
+            "VARIABLES" => $arVariables,
+            "ALIASES" => $arVariableAliases
         ];
 
-        $grid_options = new GridOptions("HISTORY_LIST");
-        $sort = $grid_options->GetSorting();
-
-        $sortKey = array_key_first($sort['sort']);
-
-        if (array_key_exists($sortKey, $this->reverseKeysList)) {
-            $sort['sort'][$this->reverseKeysList[$sortKey]] = $sort['sort'][$sortKey];
-            unset($sort['sort'][$sortKey]);
-        }
-
-        $result = OrderChangeTable::getList([
-            "filter" => $filter,
-            "select" => $select,
-            "order" => $sort['sort'],
-            "cache" => ['ttl' => 3600]
-        ]);
-
-        while ($entry = $result->fetch()) {
-
-            $print["COLUMNS"] = \CSaleOrderChange::GetRecordDescription($entry["TYPE"], $entry["DATA"]);
-
-            if ($print["COLUMNS"]["INFO"] == "") {
-                $print["COLUMNS"]["INFO"] = '-';
-            }
-
-            $print["COLUMNS"]["DATE_MODIFY"] = $entry["DATE_MODIFY"]->toString();
-
-            if (!isset($this->userNameList[$entry["USER_ID"]])) {
-                $print["COLUMNS"]["USER"] = $this->getUserName($entry["USER_ID"]);
-            } else {
-                $print["COLUMNS"]["USER"] = $this->userNameList[$entry["USER_ID"]];
-            }
-
-            $print['data'] = $print["COLUMNS"];
-            $print['actions'] = [];
-            $print['editable'] = true;
-            $print['id'] = $entry['ID'];
-
-            $this->historyList[] = $print;
-        }
+        $componentPage = "list";
+        return $componentPage;
     }
 
-    public function getUserName($userID): string
-    {
-        $result = UserTable::getList([
-            "filter" => ["ID" => $userID],
-            "select" => ["NAME", "LAST_NAME"],
-            "cache" => ['ttl' => 3600]
-        ])->fetch();
-
-        return $result['NAME'] . " " . $result['LAST_NAME'];
-    }
 }
