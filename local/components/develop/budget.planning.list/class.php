@@ -7,14 +7,6 @@ use Budget\Budget;
 
 class BudgetPlanningList extends CBitrixComponent
 {
-    protected $historyList = [];
-    protected $userNameList = [];
-    private $reverseKeysList = [
-        "USER" => "USER_ID",
-        "NAME" => "TYPE",
-        "INFO" => "DATA"
-    ];
-
     public function onPrepareComponentParams($params)
     {
         return $params;
