@@ -23,17 +23,34 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
         <? } ?>
     </div>
 
-    <?
-    if ($arParams['SHOW_HISTORY'] === 'Y') {
-        $APPLICATION->IncludeComponent(
-            "develop:budget.planning.history",
-            ".default",
-            array(
-                'USER_DATA' => $arResult['USER_DATA']
-            )
-        );
-    }
-    ?>
+    <div class="another-section">
+        <?
+        if ($arParams['SHOW_HISTORY'] === 'Y') { ?>
+            <div class="another-block">
+                <?
+                $APPLICATION->IncludeComponent(
+                    "develop:budget.planning.history",
+                    ".default",
+                    array(
+                        'USER_DATA' => $arResult['USER_DATA']
+                    )
+                );
+                ?>
+            </div>
 
+        <? } ?>
+        <? if ($arParams['SHOW_GRAPH'] === 'Y') { ?>
+            <div class="another-block">
+                <? $APPLICATION->IncludeComponent(
+                    "develop:budget.planning.statistics",
+                    ".default",
+                    array(
+                        'SHOW_GRAPH' => $arParams['SHOW_GRAPH']
+                    )
+                ); ?>
+            </div>
+        <? }
+        ?>
+    </div>
 
 </div>

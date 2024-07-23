@@ -72,6 +72,8 @@ $methodInstall = Config::getMethodInstall(SITE_ID);
     Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/app.js");
     Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/dashboard.js");
     Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/pages/sweet-alert.js");
+
+    Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/chart/chart.umd.min.js");
     ?>
 </head>
 

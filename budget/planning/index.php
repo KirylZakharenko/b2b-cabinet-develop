@@ -13,6 +13,7 @@ $APPLICATION->IncludeComponent(
 		"SET_STATUS_404" => "N",
 		"SHOW_404" => "N",
 		"SHOW_HISTORY" => "Y",
+        'SHOW_GRAPH' => 'Y',
 		"SHOW_TIME_STAMP" => array(
 			0 => "MONTH",
 		),

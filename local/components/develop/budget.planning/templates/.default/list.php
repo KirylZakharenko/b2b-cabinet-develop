@@ -5,7 +5,8 @@ $APPLICATION->IncludeComponent(
     ".default",
     Array(
         'SHOW_TIME_STAMP' => ['MONTH'],
-        'SHOW_HISTORY' => $arParams['SHOW_HISTORY']
+        'SHOW_HISTORY' => $arParams['SHOW_HISTORY'],
+        'SHOW_GRAPH' => $arParams['SHOW_GRAPH'],
     ),
 );
 

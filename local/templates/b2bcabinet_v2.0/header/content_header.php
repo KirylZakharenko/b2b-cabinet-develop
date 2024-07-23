@@ -256,4 +256,33 @@ $arCurrency = ['RUB','BYN','USD'];
             false
         );
         ?>
+        <?
+//        $arProps = \Bitrix\Iblock\ElementTable::getList([
+//           'filter' => [
+//                   'ID' => 576,
+//                    'IBLOCK_ID' => 49,
+//           ],
+//            'select' => [
+//                'ID',
+//                'IBLOCK_SECTION_ID',
+//                'PROPS.CODE'
+//            ],
+//            'runtime' => [
+//                    new \Bitrix\Main\Entity\ReferenceField(
+//                            'PROPS',
+//                            \Bitrix\Iblock\PropertyTable::class,
+//                            \Bitrix\Main\Entity\Query\Join::on("this.IBLOCK_ID", "ref.ID")
+//                    ),
+////                    new \Bitrix\Main\Entity\ReferenceField(
+////                            'PROP',
+////                            \Bitrix\Iblock\ElementPropertyTable::class,
+////                            \Bitrix\Main\Entity\Query\Join::on("PROPS.CODE", "ref.ID")
+////                    )
+//            ]
+//        ]);
+//
+//        while ($print = $arProps->fetch()) {
+//            print_r($print);
+//        }
+        ?>
         <div class="content">

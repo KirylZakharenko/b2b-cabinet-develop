@@ -56,6 +56,13 @@ $arComponentParameters = [
             'DEFAULT' => 'N',
             "PARENT" => "ADDITIONAL_SETTINGS"
         ),
+        'SHOW_GRAPH' => array(
+            'NAME' => 'Отображать статистику в графах',
+            'TYPE' => 'CHECKBOX',
+            'MULTIPLE' => 'N',
+            'DEFAULT' => 'N',
+            "PARENT" => "ADDITIONAL_SETTINGS"
+        ),
     ]
 ];
 

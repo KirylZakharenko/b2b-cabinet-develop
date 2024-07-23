@@ -51,8 +51,6 @@ class BudgetHistory extends Budget
 
         $result['HISTORY_LIST'] = [];
 
-
-
         foreach ($this->userData as $data) {
             $orderDate = static::getDate('d M Y H:i:s', $data['TIME_STAMP']);
 

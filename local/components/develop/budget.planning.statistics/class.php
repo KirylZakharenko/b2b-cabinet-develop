@@ -1,6 +1,6 @@
 <?php
 
-class BudgetStatistics
+class BudgetStatistics extends CBitrixComponent
 {
     public function onPrepareComponentParams($params)
     {
