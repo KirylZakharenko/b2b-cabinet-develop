@@ -20,8 +20,10 @@ class BudgetPlanningList extends CBitrixComponent
 
     public function getUserData()
     {
-        if (!empty($this->getFieldsTable())) {
-            $dataList = $this->getFieldsTable();
+        $orderFields = $this->getFieldsTable();
+
+        if (!empty($orderFields)) {
+            $dataList = $orderFields;
 
             $this->arResult['USER_DATA'] = $dataList;
             $userBudget = new Budget($dataList);
@@ -35,21 +37,27 @@ class BudgetPlanningList extends CBitrixComponent
     {
         global $USER;
 
-        BudgetConfig::initBudgetTable();
 
-        $userBudget = BudgetTable::getList([
+        $userBudget = \Bitrix\Sale\Internals\OrderTable::getList([
             'filter' => [
                 'USER_ID' => $USER->GetID(),
             ],
-            'select' => ['*']
+            'select' => [
+                'ORDER_ID' => 'ID',
+                'USER_ID',
+                'MONEY' => 'PRICE',
+                'ORDER_STATUS' => 'STATUS_ID',
+                'STATUS_NAME' => 'STATUS.NAME',
+                'ORDER_CANCELED' => 'CANCELED',
+                'DATE_CANCELED',
+                'TIME_STAMP' => 'DATE_STATUS',
+            ]
         ])->fetchAll();
-
         if ($userBudget) {
             $data = $userBudget;
         } else {
             $data = [];
         }
-
         return $data;
     }
 }

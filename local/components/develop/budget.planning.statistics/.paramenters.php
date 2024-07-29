@@ -11,5 +11,11 @@ $arComponentParameters = [
             'DEFAULT' => 'N',
             "PARENT" => "ADDITIONAL_SETTINGS"
         ),
+        'USER_DATA' => array(
+            'NAME' => 'Пользовательские данные',
+            'TYPE' => 'LIST',
+            'REFRESH' => 'N',
+
+        ),
     ]
 ];

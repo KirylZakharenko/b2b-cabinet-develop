@@ -45,7 +45,8 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
                     "develop:budget.planning.statistics",
                     ".default",
                     array(
-                        'SHOW_GRAPH' => $arParams['SHOW_GRAPH']
+                        'SHOW_GRAPH' => $arParams['SHOW_GRAPH'],
+                        'USER_DATA' => $arResult['USER_DATA']
                     )
                 ); ?>
             </div>

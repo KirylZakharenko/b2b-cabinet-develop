@@ -22,4 +22,9 @@ class DateManager
         return date($format);
     }
 
+    public static function getNumDate($format, $timeStamp): string
+    {
+        return idate($format, $timeStamp);
+    }
+
 }

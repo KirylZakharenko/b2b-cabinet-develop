@@ -11,8 +11,12 @@ class CurrencyManager
         return \Bitrix\Currency\CurrencyManager::getBaseCurrency();
     }
 
-    public static function currencyFormat($arPrices, $currency, $arCodes = [], $flag = true)
+    public static function currencyFormat($arPrices, $currency = '', $arCodes = [], $flag = true)
     {
+        if (empty($currency)) {
+            $currency = self::getBaseCurrency();
+        }
+
         if (gettype($arPrices) === 'array') {
             $result = [];
             if (!empty($arCodes)) {

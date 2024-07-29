@@ -31,7 +31,7 @@ class Budget extends DateManager
 
         foreach ($userData as $data) {
 
-            if ($data['ORDER_STATUS'] != 'F') continue;
+            if ($data['ORDER_CANCELED'] === 'Y') continue;
 
             $this->currentMonth = static::getDate('m', $data['TIME_STAMP']);
             $this->currentYear = static::getDate('Y', $data['TIME_STAMP']);

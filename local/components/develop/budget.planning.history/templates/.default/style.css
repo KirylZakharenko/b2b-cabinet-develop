@@ -22,9 +22,36 @@
 
 .history-list {
     height: 500px;
-    overflow: scroll;
+    /*overflow: scroll;*/
+    display: flex;
+    flex-direction: column;
+    gap: 20px
 }
 
-/*.another-block {*/
-/*    di*/
-/*}*/
+
+.history-right {
+    display: flex;
+    justify-content: space-between;
+}
+
+.history-item-sum-block {
+    display: flex;
+}
+
+.canceled-order {
+    color: #ff5858;
+}
+
+.success-order {
+    color: #05cb05;
+}
+
+.history-item-status {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.history-item-subtitle {
+    margin-left: 5px;
+}

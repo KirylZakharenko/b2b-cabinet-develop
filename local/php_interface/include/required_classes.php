@@ -6,6 +6,7 @@ Loader::registerAutoloadClasses(
     array(
         'Budget\Budget' => '/local/php_interface/classes/sotbit/budget/Budget.php',
         'Budget\History\BudgetHistory' => '/local/php_interface/classes/sotbit/budget/BudgetHistory.php',
+        'Budget\Statistics\BudgetStatistics' => '/local/php_interface/classes/sotbit/budget/BudgetStatistics.php',
         'Develop\Helper\DateManager' => '/local/php_interface/classes/sotbit/budget/helper/DateManager.php',
         'Develop\Helper\CurrencyManager' => '/local/php_interface/classes/sotbit/budget/helper/CurrencyManager.php',
     )

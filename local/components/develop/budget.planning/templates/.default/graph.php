@@ -2,6 +2,6 @@
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");?>
 
 
-huis
+test
 
 <?require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php");?>

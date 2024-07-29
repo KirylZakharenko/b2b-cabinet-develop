@@ -4,6 +4,8 @@ namespace Budget\History;
 
 use Budget\Budget;
 use Bitrix\Sale\StatusLangTable;
+use Develop\Helper\CurrencyManager;
+
 class BudgetHistory extends Budget
 {
     protected array $orderStatus = [];
@@ -14,55 +16,32 @@ class BudgetHistory extends Budget
         parent::__construct($userData);
     }
 
-    private function getOrderStatus()
+    public function getHistoryList(): array
     {
-           if (!empty($this->userData)) {
-
-               foreach ($this->userData as $data) {
-                   $this->orderStatus[] = $data['ORDER_STATUS'];
-               }
-
-               $this->orderStatus = array_unique($this->orderStatus);
-
-               $this->getOrderStatusList();
-
-           }
-    }
-
-    private function getOrderStatusList()
-    {
-        $statusList = StatusLangTable::getList([
-            'filter' => [
-                'STATUS_ID' => $this->orderStatus,
-            ],
-            'select' => ['STATUS_ID', 'NAME']
-        ]);
-
-        while ($status = $statusList->fetch()) {
-
-            $this->orderStatusList[$status['STATUS_ID']] = $status['NAME'];
-        }
-    }
-
-    public function getHistoryList()
-    {
-        //parent::calculateCashUser($this->userData);
-        $this->getOrderStatus();
-
         $result['HISTORY_LIST'] = [];
-
         foreach ($this->userData as $data) {
-            $orderDate = static::getDate('d M Y H:i:s', $data['TIME_STAMP']);
+            $orderDate = static::getDate('d.m.Y', $data['TIME_STAMP']);
+            $sumFormatted = CurrencyManager::currencyFormat($data['MONEY']);
 
             $result['HISTORY_LIST'][] = [
-                'MONEY' => $data['MONEY'],
+                'SUM' => $data['MONEY'],
+                'SUM_FORMATTED' => $sumFormatted,
                 'ORDER_ID' => $data['ORDER_ID'],
-                'ORDER_STATUS' => $this->orderStatusList[$data['ORDER_STATUS']],
+                'ORDER_STATUS_ID' => $data['ORDER_STATUS'],
+                'STATUS_NAME' => $data['STATUS_NAME'],
                 'ORDER_DATE' => $orderDate,
+                'ORDER_CANCELED' => $data['ORDER_CANCELED'],
             ];
         }
 
+        usort($result['HISTORY_LIST'], [$this, 'sortItemsAsc']);
+
         return $result['HISTORY_LIST'];
+    }
+
+    public function sortItemsAsc($a, $b)
+    {
+        return strcmp($a['ORDER_DATE'], $b['ORDER_DATE']);
     }
 
 
