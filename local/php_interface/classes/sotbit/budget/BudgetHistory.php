@@ -41,7 +41,8 @@ class BudgetHistory extends Budget
 
     public function sortItemsAsc($a, $b)
     {
-        return strcmp($a['ORDER_DATE'], $b['ORDER_DATE']);
+//        return strcmp($a['ORDER_DATE'], $b['ORDER_DATE']);
+         return strtotime($a['ORDER_DATE']) - strtotime($b['ORDER_DATE']);
     }
 
 

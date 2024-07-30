@@ -22,7 +22,7 @@
 
 .history-list {
     height: 500px;
-    /*overflow: scroll;*/
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
     gap: 20px
@@ -32,6 +32,7 @@
 .history-right {
     display: flex;
     justify-content: space-between;
+    margin-right: 10px;
 }
 
 .history-item-sum-block {
