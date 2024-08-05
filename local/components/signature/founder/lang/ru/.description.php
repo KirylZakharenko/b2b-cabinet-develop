@@ -1,0 +1,5 @@
+<?php
+
+$MESS["SOTBIT_B2BCABINET_SALE_HISTORY_ADD_NAME"] = "История заказа";
+$MESS["SOTBIT_B2BCABINET_SALE_HISTORY_ADD_DESCRIPTION"] = "История изменения заказа";
+$MESS["SOTBIT_B2BCABINET_SALE_HISTORY_ADD_TITLE"] = "История заказов";

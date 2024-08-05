@@ -41,6 +41,13 @@ $aMenuLinks = Array(
 		Array(), 
 		Array(), 
 		"\\Bitrix\\Main\\Loader::includeModule('sotbit.b2bcabinet')" 
+	),
+	Array(
+		"инфраструктура", 
+		"/infrastruktura/", 
+		Array(), 
+		Array(), 
+		"" 
 	)
 );
 ?>
