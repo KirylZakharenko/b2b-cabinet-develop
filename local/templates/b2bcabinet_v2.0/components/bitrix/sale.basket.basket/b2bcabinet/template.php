@@ -79,6 +79,16 @@ if ($arResult['BASKET_ITEM_MAX_COUNT_EXCEEDED']) {
     <?
 }
 ?>
+    <?
+        if (!empty($arResult['SOTBIT_PRICE_TYPE'])) {
+        ?>
+    <select id="change-price">
+        <? foreach ($arResult['SOTBIT_PRICE_TYPE'] as $item) {?>
+        <option class="" value="<?=$item['ID']?>" <?if($item['CAN_BUY'] == 'N'):?>disabled<?endif;?>><?=$item['NAME']?></option>
+        <? } ?>
+    </select>
+            <?
+        } ?>
     <div id="basket-root" class="basket">
         <div id="basket-items-list-wrapper" class="basket__basket-items-list-wrapper">
             <div id="basket-item-list" class="basket__basket-item-list">

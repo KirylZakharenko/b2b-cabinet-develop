@@ -2,6 +2,7 @@
 
 use Bitrix\Main\Loader;
 use Sotbit\Multibasket\Helpers;
+use Sotbit\Custom\Price\RegionPrice;
 
 $arResult['headers']['props'] = [];
 $arResult['headers']['column_list'] = [];
@@ -25,3 +26,9 @@ $arResult['templateColums'] = [
 
 $arResult['module_multibasket_is_includet'] = Loader::includeModule('sotbit.multibasket')
     && Helpers\Config::moduleIsEnabled(SITE_ID);
+
+
+
+$userGroups = $USER->GetUserGroupArray();
+$arResult['SOTBIT_PRICE_TYPE'] = RegionPrice::getAvailablePriceTypes($userGroups);
+

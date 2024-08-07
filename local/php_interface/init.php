@@ -24,6 +24,13 @@ if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/local/php_interface/functions/tabl
 
 initCurrencyTable();
 
+Main\Loader::registerAutoLoadClasses(
+    null,
+    [
+        'Sotbit\Custom\Price\RegionPrice' => '\local\php_interface\classes\sotbit\regionPrice.php'
+    ]
+);
+
 function cashbackPayment(Main\Event $event)
 {
     /** @var \Bitrix\Sale\Order $order */
